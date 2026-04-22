@@ -16,7 +16,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        example: ["01-cli"]
+        example: ["01-cli", "02-telegram-bot", "03-next-dashboard"]
     defaults:
       run:
         working-directory: examples/${{ matrix.example }}
@@ -35,3 +35,9 @@ jobs:
 
       - name: Build
         run: npm run build --if-present
+
+      - name: Dry-run (telegram bot)
+        if: matrix.example == '02-telegram-bot'
+        run: npm run dry-run
+        env:
+          HIRO_API_URL: https://api.hiro.so

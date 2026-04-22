@@ -41,8 +41,8 @@ Vault: stx-to-sbtc
 | # | Name | What it shows |
 |---|---|---|
 | [01-cli](examples/01-cli) | CLI inspector | `DCAVault.getStats / getPlan / getUserPlans / canExecute` |
-
-More on the way: a Telegram bot that announces every DCA swap, and a minimal Next.js dashboard.
+| [02-telegram-bot](examples/02-telegram-bot) | Execution announcer | Polling `getStats()` for deltas + zero-dep Telegram posting |
+| [03-next-dashboard](examples/03-next-dashboard) | Next.js 15 dashboard | SDK in a React Server Component with ISR revalidation |
 
 ## Run the smoke tests
 
