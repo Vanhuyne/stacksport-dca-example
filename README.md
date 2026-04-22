@@ -5,6 +5,7 @@ Worked examples for [`@stacksport/dca-sdk`](https://www.npmjs.com/package/@stack
 [![CI](https://github.com/Vanhuyne/stacksport-dca-example/actions/workflows/ci.yml/badge.svg)](https://github.com/Vanhuyne/stacksport-dca-example/actions/workflows/ci.yml)
 [![Examples](https://github.com/Vanhuyne/stacksport-dca-example/actions/workflows/examples-matrix.yml/badge.svg)](https://github.com/Vanhuyne/stacksport-dca-example/actions/workflows/examples-matrix.yml)
 [![Integration](https://github.com/Vanhuyne/stacksport-dca-example/actions/workflows/integration.yml/badge.svg)](https://github.com/Vanhuyne/stacksport-dca-example/actions/workflows/integration.yml)
+[![Health check](https://github.com/Vanhuyne/stacksport-dca-example/actions/workflows/health-check.yml/badge.svg)](https://github.com/Vanhuyne/stacksport-dca-example/actions/workflows/health-check.yml)
 [![npm](https://img.shields.io/npm/v/@stacksport/dca-sdk.svg)](https://www.npmjs.com/package/@stacksport/dca-sdk)
 
 ## What is this?

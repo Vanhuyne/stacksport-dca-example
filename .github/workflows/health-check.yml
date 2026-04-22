@@ -1,18 +1,16 @@
-name: CI
+name: Health check (weekly)
 
 on:
-  push:
-    branches: [main]
-  pull_request:
-    branches: [main]
+  schedule:
+    # Sunday 00:00 UTC — catches environment drift on GitHub runner images
+    # and ensures @stacksport/dca-sdk still installs cleanly across our
+    # full support matrix, independent of any code changes during the week.
+    - cron: "0 0 * * 0"
+  workflow_dispatch:
 
-# Cold-install across Node + OS matrix. We intentionally do NOT cache the
-# npm install step because the goal of this job is to verify that a fresh
-# consumer of @stacksport/dca-sdk can install and import it successfully
-# on every supported platform.
 jobs:
-  smoke:
-    name: Smoke test (node ${{ matrix.node }} / ${{ matrix.os }})
+  reinstall:
+    name: Fresh install (node ${{ matrix.node }} / ${{ matrix.os }})
     runs-on: ${{ matrix.os }}
     strategy:
       fail-fast: false
