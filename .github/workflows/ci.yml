@@ -1,0 +1,34 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+# Cold-install across Node + OS matrix. We intentionally do NOT cache the
+# npm install step because the goal of this job is to verify that a fresh
+# consumer of @stacksport/dca-sdk can install and import it successfully
+# on every supported platform.
+jobs:
+  smoke:
+    name: Smoke test (node ${{ matrix.node }} / ${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        node: ["20", "22"]
+        os: [ubuntu-latest, macos-latest, windows-latest]
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js ${{ matrix.node }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node }}
+
+      - name: Install (cold)
+        run: npm install
+
+      - name: Smoke tests
+        run: npm test

@@ -1,0 +1,39 @@
+name: Integration (mainnet canary)
+
+on:
+  schedule:
+    # Every 6 hours — canary that catches breakage in the deployed contracts,
+    # Hiro API response shape, or newly-published SDK versions.
+    - cron: "0 */6 * * *"
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "tests/integration.test.ts"
+      - ".github/workflows/integration.yml"
+      - "package.json"
+
+jobs:
+  canary:
+    name: Mainnet read (node ${{ matrix.node }})
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    strategy:
+      fail-fast: false
+      matrix:
+        node: ["20", "22"]
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js ${{ matrix.node }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node }}
+
+      - name: Install (cold)
+        run: npm install
+
+      - name: Run integration tests
+        env:
+          HIRO_API_URL: https://api.hiro.so
+        run: npm run test:integration

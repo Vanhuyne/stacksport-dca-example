@@ -1,0 +1,34 @@
+{
+  "name": "stacksport-dca-example",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Examples showing how to use @stacksport/dca-sdk to read and interact with StacksPort DCA vaults on Stacks.",
+  "type": "module",
+  "scripts": {
+    "test": "node --test --experimental-strip-types tests/smoke.test.ts",
+    "test:integration": "node --test --experimental-strip-types tests/integration.test.ts"
+  },
+  "dependencies": {
+    "@stacksport/dca-sdk": "^0.1.1"
+  },
+  "devDependencies": {
+    "@types/node": "^20",
+    "typescript": "^5"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "keywords": [
+    "stacks",
+    "dca",
+    "sbtc",
+    "bitcoin",
+    "example",
+    "stacksport"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Vanhuyne/stacksport-dca-example"
+  },
+  "license": "MIT"
+}

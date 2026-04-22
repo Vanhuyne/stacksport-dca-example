@@ -1,0 +1,37 @@
+name: Examples
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+# Each example has its own package.json and its own lockfile. We build them
+# in a matrix to catch example-specific breakage (e.g. an example that drifts
+# from the SDK's current API). Cache is scoped per example.
+jobs:
+  build:
+    name: Build example ${{ matrix.example }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        example: ["01-cli"]
+    defaults:
+      run:
+        working-directory: examples/${{ matrix.example }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+          cache-dependency-path: examples/${{ matrix.example }}/package-lock.json
+
+      - name: Install
+        run: npm install
+
+      - name: Build
+        run: npm run build --if-present
